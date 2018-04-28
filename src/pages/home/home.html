@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="dark" >
+    <ion-title text-center >
+      IMGAPP
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor="let post of _fs.imagenes" >
+    <img class="imagen" [src]="post.img">
+    <ion-card-content>
+      <ion-card-title>
+        {{ post.titulo }}
+      </ion-card-title>
+    </ion-card-content>
+    <ion-row>
+      <ion-col text-right >
+        <button (click)="compartir(post)" ion-button outline block small outline icon-left icon-only >
+          <ion-icon name="share-alt"></ion-icon>
+          Compartir
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-fab bottom right>
+      <button ion-fab color="danger" (click)="mostrarModal()" ><ion-icon name="add"></ion-icon></button>
+  </ion-fab>   
+  
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" [enabled]="hayMas" >
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
